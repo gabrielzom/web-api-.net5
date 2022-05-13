@@ -5980,31 +5980,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\GABRIEL\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/home/gabriel/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\GABRIEL\\Desktop\\MonitoriaWEBAPI\\MonitoriaWEBAPI.csproj",
+      "projectUniqueName": "/home/gabriel/dev/web-api-.net5/MonitoriaWEBAPI.csproj",
       "projectName": "MonitoriaWEBAPI",
-      "projectPath": "C:\\Users\\GABRIEL\\Desktop\\MonitoriaWEBAPI\\MonitoriaWEBAPI.csproj",
-      "packagesPath": "C:\\Users\\GABRIEL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\GABRIEL\\Desktop\\MonitoriaWEBAPI\\obj\\",
+      "projectPath": "/home/gabriel/dev/web-api-.net5/MonitoriaWEBAPI.csproj",
+      "packagesPath": "/home/gabriel/.nuget/packages/",
+      "outputPath": "/home/gabriel/dev/web-api-.net5/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\GABRIEL\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/gabriel/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6066,7 +6059,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.300/RuntimeIdentifierGraph.json"
       }
     }
   }

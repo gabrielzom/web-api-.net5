@@ -8,7 +8,7 @@ namespace MonitoriaWEBAPI.Data
         public DbSet<Client> Clients { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=DEVELOPMENT;Initial Catalog=MonitoriaApiWEB;User Id=sa;Password=Biels@@1");
+            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=MonitoriaApiWEB;User Id=sa;Password=Biels@@1");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
