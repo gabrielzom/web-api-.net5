@@ -20,7 +20,7 @@ namespace MonitoriaWEBAPI.Data
                 table.Property("RegisterOfPhysicalPerson").HasColumnType("CHAR(11)").HasColumnName("register_of_physical_person");
                 table.Property("DateOfBorn").HasColumnType("DATE").HasColumnName("date_of_born");
 
-                table.HasKey("ClientId").HasName("client_id");
+                table.Property("ClientId").HasColumnType("PRIMARY KEY INT IDENTITY NOT NULL").HasColumnName("client_id");
             });   
         }
     }
