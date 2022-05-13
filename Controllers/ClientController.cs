@@ -8,46 +8,46 @@ using System.Threading.Tasks;
 
 namespace MonitoriaWEBAPI.Controllers
 {
-    [Route("Clientes")]
-    public class ClienteController : ControllerBase
+    [Route("Clients")]
+    public class ClientController : ControllerBase
     {
 
         [HttpGet]
-        [Route("Listar/All")]
-        public List<Cliente> ListarClientes()
+        [Route("List")]
+        public List<Client> ListClients()
         {
             using var dbcontext = new Data.ApplicationContext();
-            var clientes = dbcontext.Clientes.Where(cliente => cliente.Id > 0).ToList();
+            var clientes = dbcontext.Clients.Where(cliente => cliente.ClientId > 0).ToList();
 
             return clientes;
         }
 
         [HttpGet]
-        [Route("Listar/{Id}")]
-        public List<Cliente> ListarCliente(int Id)
+        [Route("List/{Id}")]
+        public List<Client> ListClients(int Id)
         {
             using var dbcontext = new Data.ApplicationContext();
-            var cliente = dbcontext.Clientes.Where(cliente => cliente.Id == Id).ToList();
+            var cliente = dbcontext.Clients.Where(cliente => cliente.ClientId == Id).ToList();
 
             return cliente;
         }
 
 
         [HttpPost]
-        [Route("Incluir")]
-        public IActionResult IncluirCliente([FromBody] List<Cliente> clientes)
+        [Route("Save")]
+        public IActionResult SaveClient([FromBody] List<Client> clients)
         {
             using var dbcontext = new Data.ApplicationContext();
             try
             {
-                foreach (var cliente in clientes)
+                foreach (var client in clients)
                 {
-                    if (cliente.Nome.Equals("") || cliente.Nascimento.Equals(new DateTime()) || cliente.CPF.Equals("")) {
+                    if (client.NameAndSurname.Equals("") || client.DateOfBorn.Equals(new DateTime()) || client.RegisterOfPhysicalPerson.Equals("")) {
                         return BadRequest("Parâmetros de inserção invalidos (INSERT).\nMenssagem de erro: Not accept empty parameters.");
                     }
                 }
 
-                dbcontext.Set<Cliente>().AddRange(clientes);
+                dbcontext.Set<Client>().AddRange(clients);
                 dbcontext.SaveChanges();
 
                 return Ok("Registro incluido com sucesso !");
@@ -59,11 +59,11 @@ namespace MonitoriaWEBAPI.Controllers
         }
 
         [HttpPut]
-        [Route("Atualizar/{Id}")]
-        public IActionResult AtualizarCliente(int Id, [FromBody] Cliente novosDadosCliente)
+        [Route("Update/{Id}")]
+        public IActionResult UpdateClient(int Id, [FromBody] Client novosDadosCliente)
         {
             using var dbcontext = new Data.ApplicationContext();
-            Cliente clienteEncontrado = dbcontext.Clientes.FirstOrDefault(cliente => cliente.Id == Id);
+            Client clienteEncontrado = dbcontext.Clients.FirstOrDefault(client => client.ClientId == Id);
             if (clienteEncontrado == null)
             {
                 return NotFound("Não encontrei nenhum registro com esse Id (UPDATE).");
@@ -71,9 +71,9 @@ namespace MonitoriaWEBAPI.Controllers
             }
             else
             {
-                clienteEncontrado.Nome = novosDadosCliente.Nome;
-                clienteEncontrado.CPF = novosDadosCliente.CPF;
-                clienteEncontrado.Nascimento = novosDadosCliente.Nascimento;
+                clienteEncontrado.NameAndSurname = novosDadosCliente.NameAndSurname;
+                clienteEncontrado.RegisterOfPhysicalPerson = novosDadosCliente.RegisterOfPhysicalPerson;
+                clienteEncontrado.DateOfBorn = novosDadosCliente.DateOfBorn;
 
                 dbcontext.SaveChanges();
 
@@ -82,11 +82,11 @@ namespace MonitoriaWEBAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("Deletar/{Id}")]
-        public IActionResult DeletarCliente(int Id)
+        [Route("Delete/{Id}")]
+        public IActionResult DeleteClient(int Id)
         {
             using var dbcontext = new Data.ApplicationContext();
-            var cliente = dbcontext.Clientes.Find(Id);
+            var cliente = dbcontext.Clients.Find(Id);
             if (cliente == null)
             {
                 return NotFound("Não encontrei nenhum registro com esse Id (DELETE).");
@@ -94,8 +94,7 @@ namespace MonitoriaWEBAPI.Controllers
             }
             else
             {
-
-                dbcontext.Clientes.Remove(cliente);
+                dbcontext.Clients.Remove(cliente);
                 dbcontext.SaveChanges();
 
                 return Ok("Registro deletado com sucesso!");
