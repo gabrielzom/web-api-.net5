@@ -87,7 +87,8 @@ namespace MonitoriaWEBAPI.Controllers
             {
                 foreach (var client in clients)
                 {
-                    if (client.NameAndSurname.Equals("") || client.DateOfBorn.Equals(new DateTime()) || client.RegisterOfPhysicalPerson.Equals("")) {
+                    if (client.NameAndSurname.Equals("") || client.DateOfBorn.Equals(new DateTime()) || client.RegisterOfPhysicalPerson.Equals("")) 
+                    {
                         return BadRequest("Parâmetros de inserção invalidos (INSERT).\nMenssagem de erro: Not accept empty parameters.");
                     }
                 }
@@ -118,8 +119,19 @@ namespace MonitoriaWEBAPI.Controllers
                 clientFound.NameAndSurname = newDataOfClient.NameAndSurname;
                 clientFound.RegisterOfPhysicalPerson = newDataOfClient.RegisterOfPhysicalPerson;
                 clientFound.DateOfBorn = newDataOfClient.DateOfBorn;
-                clientFound.Genre = newDataOfClient.Genre;
 
+                if (newDataOfClient.Genre == Convert.ToString(Genre.FEMALE) ||
+                    newDataOfClient.Genre == Convert.ToString(Genre.MALE)   ||
+                    newDataOfClient.Genre == Convert.ToString(Genre.OTHER)) 
+                {
+                    clientFound.Genre = newDataOfClient.Genre;
+                }
+                
+                else 
+                {
+                    clientFound.Genre = Convert.ToString(Genre.UNDEFINED);
+                }
+                
                 dbcontext.SaveChanges();
 
                 return Ok("Registro atualizado com sucesso!");
@@ -138,7 +150,8 @@ namespace MonitoriaWEBAPI.Controllers
             {
                 return NotFound("Não encontrei nenhum registro com esse Id (UPDATE).");
             }
-            else if (NameAndSurname == null) {
+            else if (NameAndSurname == null) 
+            {
                 return BadRequest("Nome e sobrenome devem ser preenchidos");
             }
             else
@@ -160,7 +173,6 @@ namespace MonitoriaWEBAPI.Controllers
             if (client == null)
             {
                 return NotFound("Não encontrei nenhum registro com esse Id (DELETE).");
-
             }
             else
             {

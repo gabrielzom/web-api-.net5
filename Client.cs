@@ -8,6 +8,6 @@ namespace MonitoriaWEBAPI
         public string NameAndSurname { get; set; }
         public string RegisterOfPhysicalPerson { get; set; }
         public DateTime DateOfBorn { get; set; }
-        public Genre Genre { get; set; }
+        public string Genre { get; set; }
     }
 }
