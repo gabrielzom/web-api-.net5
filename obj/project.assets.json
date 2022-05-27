@@ -5973,6 +5973,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "Microsoft.EntityFrameworkCore >= 5.0.10",
+      "Microsoft.EntityFrameworkCore.Abstractions >= 5.0.10",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.10",
@@ -6017,6 +6018,10 @@
         "targetAlias": "net5.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[5.0.10, )"
+          },
+          "Microsoft.EntityFrameworkCore.Abstractions": {
             "target": "Package",
             "version": "[5.0.10, )"
           },

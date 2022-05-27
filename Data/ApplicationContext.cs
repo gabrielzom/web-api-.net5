@@ -19,6 +19,7 @@ namespace MonitoriaWEBAPI.Data
                 table.Property("NameAndSurname").HasMaxLength(40).HasColumnName("name_and_surname");
                 table.Property("RegisterOfPhysicalPerson").HasColumnType("CHAR(11)").HasColumnName("register_of_physical_person");
                 table.Property("DateOfBorn").HasColumnType("DATE").HasColumnName("date_of_born");
+                table.Property("Genre").HasMaxLength(11).HasColumnName("genre");
 
                 table.Property("ClientId").HasColumnType("INT").HasColumnName("client_id");
             });   

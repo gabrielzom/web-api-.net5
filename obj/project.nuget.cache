@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RI7QsfHEBMwORxVrXDJymHiXFeZbXxtZZtbz8AZAqWxReqypHEXlNtku0+WlNo0ycw6URoc6JU/PnVjlhwWO/g==",
+  "dgSpecHash": "5EmhrYEdJgPqSjHfX6XfBxZ4IpoZXje/oq7jKEPju5Yuocn2fgQH4Wr+FUTKkndbyZWvwBGleK7Pu+lCJ6/URA==",
   "success": true,
   "projectFilePath": "/home/gabriel/dev/web-api-.net5/MonitoriaWEBAPI.csproj",
   "expectedPackageFiles": [
