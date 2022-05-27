@@ -118,6 +118,7 @@ namespace MonitoriaWEBAPI.Controllers
                 clientFound.NameAndSurname = newDataOfClient.NameAndSurname;
                 clientFound.RegisterOfPhysicalPerson = newDataOfClient.RegisterOfPhysicalPerson;
                 clientFound.DateOfBorn = newDataOfClient.DateOfBorn;
+                clientFound.Genre = newDataOfClient.Genre;
 
                 dbcontext.SaveChanges();
 
