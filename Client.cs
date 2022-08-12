@@ -9,5 +9,12 @@ namespace MonitoriaWEBAPI
         public string RegisterOfPhysicalPerson { get; set; }
         public DateTime DateOfBorn { get; set; }
         public string Genre { get; set; }
+
+        public Boolean SomeParameterIsNull()
+        {
+            return this.NameAndSurname.Equals("") || this.DateOfBorn.Equals(new DateTime()) ||
+                   this.RegisterOfPhysicalPerson.Equals("") || this.Genre == null;
+        }
+
     }
 }

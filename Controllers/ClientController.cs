@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MonitoriaWEBAPI.Controllers
 {
@@ -14,7 +12,7 @@ namespace MonitoriaWEBAPI.Controllers
 
         [HttpGet]
         [Route("List")]
-        public List<Client> ListClients()
+        public List<Client> GetClients()
         {
             using var dbcontext = new Data.ApplicationContext();
             var clients = dbcontext.Clients.Where(client => client.ClientId > 0).ToList();
@@ -23,78 +21,55 @@ namespace MonitoriaWEBAPI.Controllers
         }
 
         [HttpGet]
-        [Route("List/{Id}")]
-        public List<Client> ListClients(int Id)
+        [Route("List/{clientId}")]
+        public Client GetClientById(int clientId)
         {
-            using var dbcontext = new Data.ApplicationContext();
-            var client = dbcontext.Clients.Where(client => client.ClientId == Id).ToList();
-
+            using var dbContext = new Data.ApplicationContext();
+            var client = dbContext.Clients.FirstOrDefault(client => client.ClientId == clientId);
             return client;
         }
 
 
         [HttpGet]
-        [Route("List/BetweenAndIncludingThem/{InitialId}&{FinalId}")]
-        public List<Client> ListBetweenAndIncludingThem(int InitialId, int FinalId)
+        [Route("List/FilterById/")]
+        public List<Client> GetFilteredClientsByIds([Required][FromQuery(Name = "initial")] int initialId, [Required][FromQuery(Name = "include")] Include include, [Required][FromQuery(Name = "final")] int finalId)
         {
-            using var dbcontext = new Data.ApplicationContext();
-            var clients = dbcontext.Clients.Where(client => (client.ClientId >= InitialId && client.ClientId <= FinalId)).ToList();
-
+            var clients = new List<Client>();
+            using var dbContext = new Data.ApplicationContext();
+            switch (include)
+            {
+                case Include.INITIAL:
+                    clients = dbContext.Clients.Where(client => (client.ClientId >= initialId && client.ClientId < finalId)).ToList();
+                    break;
+                case Include.FINAL:
+                    clients = dbContext.Clients.Where(client => (client.ClientId > initialId && client.ClientId <= finalId)).ToList();
+                    break;
+                case Include.BETWEEN:
+                    clients = dbContext.Clients.Where(client => (client.ClientId > initialId && client.ClientId < finalId)).ToList();
+                    break;
+                case Include.ALL: 
+                    clients = dbContext.Clients.Where(client => (client.ClientId >= initialId && client.ClientId <= finalId)).ToList();
+                    break;
+            }
+            
+            
             return clients;
         }
-
-
-        [HttpGet]
-        [Route("List/BetweenAndIncludingOnlyFinal/{InitialId}&{FinalId}")]
-        public List<Client> ListBetweenAndIncludingOnlyFinal(int InitialId, int FinalId)
-        {
-            using var dbcontext = new Data.ApplicationContext();
-            var clients = dbcontext.Clients.Where(client => (client.ClientId > InitialId && client.ClientId <= FinalId)).ToList();
-
-            return clients;
-        }
-
-
-        [HttpGet]
-        [Route("List/BetweenAndIncludingOnlyInitial/{InitialId}&{FinalId}")]
-        public List<Client> ListBetweenAndIncludingOnlyInitial(int InitialId, int FinalId)
-        {
-            using var dbcontext = new Data.ApplicationContext();
-            var clients = dbcontext.Clients.Where(client => (client.ClientId >= InitialId && client.ClientId < FinalId)).ToList();
-
-            return clients;
-        }
-
-
-
-        [HttpGet]
-        [Route("List/BetweenOnly/{InitialId}&{FinalId}")]
-        public List<Client> ListBetweenOnly(int InitialId, int FinalId)
-        {
-            using var dbcontext = new Data.ApplicationContext();
-            var clients = dbcontext.Clients.Where(client => (client.ClientId > InitialId && client.ClientId < FinalId)).ToList();
-
-            return clients;
-        }
-
-
+        
         [HttpPost]
         [Route("Save")]
-        public IActionResult SaveClient([FromBody] List<Client> clients)
+        public IActionResult CreateClient([FromBody] Client client)
         {
-            using var dbcontext = new Data.ApplicationContext();
+            using var dbContext = new Data.ApplicationContext();
             try
             {
-                foreach (var client in clients)
+                if (client.SomeParameterIsNull()) 
                 {
-                    if (client.NameAndSurname.Equals("") || client.DateOfBorn.Equals(new DateTime()) || client.RegisterOfPhysicalPerson.Equals("")) 
-                    {
-                        return BadRequest("Parâmetros de inserção invalidos (INSERT).\nMenssagem de erro: Not accept empty parameters.");
-                    }
+                    return BadRequest("Parâmetros de inserção invalidos (INSERT).\nMenssagem de erro: Not accept empty parameters.");
                 }
 
-                dbcontext.Set<Client>().AddRange(clients);
-                dbcontext.SaveChanges();
+                dbContext.Set<Client>().Add(client);
+                dbContext.SaveChanges();
 
                 return Ok("Registro incluido com sucesso !");
             }
@@ -105,11 +80,11 @@ namespace MonitoriaWEBAPI.Controllers
         }
 
         [HttpPut]
-        [Route("Update/{Id}")]
-        public IActionResult UpdateClient(int Id, [FromBody] Client newDataOfClient)
+        [Route("Update/{clientTd}")]
+        public IActionResult UpdateClient(int clientTd, [FromBody] Client newDataOfClient)
         {
-            using var dbcontext = new Data.ApplicationContext();
-            Client clientFound = dbcontext.Clients.FirstOrDefault(client => client.ClientId == Id);
+            using var dbContext = new Data.ApplicationContext();
+            Client clientFound = GetClientById(clientTd);
             if (clientFound == null)
             {
                 return NotFound("Não encontrei nenhum registro com esse Id (UPDATE).");
@@ -132,7 +107,7 @@ namespace MonitoriaWEBAPI.Controllers
                     clientFound.Genre = Convert.ToString(Genre.UNDEFINED);
                 }
                 
-                dbcontext.SaveChanges();
+                dbContext.SaveChanges();
 
                 return Ok("Registro atualizado com sucesso!");
             }
@@ -141,23 +116,23 @@ namespace MonitoriaWEBAPI.Controllers
 
 
         [HttpPatch]
-        [Route("Update/NameAndSurname/{Id}")]
-        public IActionResult UpdateClientNameAndSurname(int Id, [FromBody] String NameAndSurname)
+        [Route("Update/NameAndSurname/{clientTd}")]
+        public IActionResult UpdateClientNameAndSurname(int clientTd, [FromBody] String nameAndSurname)
         {
-            using var dbcontext = new Data.ApplicationContext();
-            Client clientFound = dbcontext.Clients.FirstOrDefault(client => client.ClientId == Id);
+            using var dbContext = new Data.ApplicationContext();
+            Client clientFound = GetClientById(clientTd);
             if (clientFound == null)
             {
                 return NotFound("Não encontrei nenhum registro com esse Id (UPDATE).");
             }
-            else if (NameAndSurname == null) 
+            else if (nameAndSurname == null) 
             {
                 return BadRequest("Nome e sobrenome devem ser preenchidos");
             }
             else
             {
-                clientFound.NameAndSurname = NameAndSurname;
-                dbcontext.SaveChanges();
+                clientFound.NameAndSurname = nameAndSurname;
+                dbContext.SaveChanges();
 
                 return Ok("Registro atualizado com sucesso!");
             }
@@ -165,19 +140,19 @@ namespace MonitoriaWEBAPI.Controllers
 
 
         [HttpDelete]
-        [Route("Delete/{Id}")]
-        public IActionResult DeleteClient(int Id)
+        [Route("Delete/{clientTd}")]
+        public IActionResult DeleteClient(int clientTd)
         {
-            using var dbcontext = new Data.ApplicationContext();
-            var client = dbcontext.Clients.Find(Id);
+            using var dbContext = new Data.ApplicationContext();
+            var client = GetClientById(clientTd);
             if (client == null)
             {
                 return NotFound("Não encontrei nenhum registro com esse Id (DELETE).");
             }
             else
             {
-                dbcontext.Clients.Remove(client);
-                dbcontext.SaveChanges();
+                dbContext.Clients.Remove(client);
+                dbContext.SaveChanges();
 
                 return Ok("Registro deletado com sucesso!");
             }

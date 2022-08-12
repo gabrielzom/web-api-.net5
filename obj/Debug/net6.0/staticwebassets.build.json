@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "oDZztOe7irO3T3+Mv5kjA8eCh0IZlsDhJHV/TMwLiWc=",
+  "Source": "MonitoriaWEBAPI",
+  "BasePath": "_content/MonitoriaWEBAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

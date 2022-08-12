@@ -114,7 +114,7 @@ C:/Users/GABRIEL/Desktop/MonitoriaWEBAPI/bin/Debug/net5.0/runtimes/win/lib/netst
 /home/gabriel/dev/web-api-.net5/obj/Debug/net5.0/MonitoriaWEBAPI.RazorTargetAssemblyInfo.cache
 /home/gabriel/dev/web-api-.net5/obj/Debug/net5.0/MonitoriaWEBAPI.csproj.CopyComplete
 /home/gabriel/dev/web-api-.net5/obj/Debug/net5.0/MonitoriaWEBAPI.dll
-/home/gabriel/dev/web-api-.net5/obj/Debug/net5.0/refint/MonitoriaWEBAPI.dll
 /home/gabriel/dev/web-api-.net5/obj/Debug/net5.0/MonitoriaWEBAPI.pdb
 /home/gabriel/dev/web-api-.net5/obj/Debug/net5.0/MonitoriaWEBAPI.genruntimeconfig.cache
 /home/gabriel/dev/web-api-.net5/obj/Debug/net5.0/ref/MonitoriaWEBAPI.dll
+/home/gabriel/dev/web-api-.net5/bin/Debug/net5.0/ref/MonitoriaWEBAPI.dll

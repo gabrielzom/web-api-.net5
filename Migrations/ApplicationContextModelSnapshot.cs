@@ -2,9 +2,10 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MonitoriaWEBAPI.Data;
+
+#nullable disable
 
 namespace MonitoriaWEBAPI.Migrations
 {
@@ -15,40 +16,37 @@ namespace MonitoriaWEBAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.10")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.0")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("MonitoriaWEBAPI.Client", b =>
                 {
                     b.Property<int>("ClientId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasColumnName("client_id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfBorn")
                         .HasColumnType("DATE")
                         .HasColumnName("date_of_born");
 
                     b.Property<string>("Genre")
-                        .IsRequired()
                         .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)")
+                        .HasColumnType("varchar(11)")
                         .HasColumnName("genre");
 
                     b.Property<string>("NameAndSurname")
                         .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)")
+                        .HasColumnType("varchar(40)")
                         .HasColumnName("name_and_surname");
 
                     b.Property<string>("RegisterOfPhysicalPerson")
                         .HasColumnType("CHAR(11)")
                         .HasColumnName("register_of_physical_person");
 
-                    b.HasKey("ClientId");
+                    b.HasKey("ClientId")
+                        .HasName("id");
 
-                    b.ToTable("clients");
+                    b.ToTable("Tab_Clients", (string)null);
                 });
 #pragma warning restore 612, 618
         }
