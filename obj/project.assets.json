@@ -2104,6 +2104,7 @@
       "Microsoft.AspNetCore.JsonPatch >= 6.0.0",
       "Microsoft.EntityFrameworkCore >= 6.0.0",
       "Microsoft.EntityFrameworkCore.Abstractions >= 6.0.0",
+      "Microsoft.EntityFrameworkCore.Analyzers >= 6.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.0",
       "Microsoft.Extensions.Caching.Abstractions >= 6.0.0",
@@ -2115,19 +2116,19 @@
     ]
   },
   "packageFolders": {
-    "/home/gabriel/.nuget/packages/": {}
+    "/home/klab/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/gabriel/dev/web-api-.net5/MonitoriaWEBAPI.csproj",
+      "projectUniqueName": "/home/klab/dev/web-api-.net5/MonitoriaWEBAPI.csproj",
       "projectName": "MonitoriaWEBAPI",
-      "projectPath": "/home/gabriel/dev/web-api-.net5/MonitoriaWEBAPI.csproj",
-      "packagesPath": "/home/gabriel/.nuget/packages/",
-      "outputPath": "/home/gabriel/dev/web-api-.net5/obj/",
+      "projectPath": "/home/klab/dev/web-api-.net5/MonitoriaWEBAPI.csproj",
+      "packagesPath": "/home/klab/.nuget/packages/",
+      "outputPath": "/home/klab/dev/web-api-.net5/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/gabriel/.nuget/NuGet/NuGet.Config"
+        "/home/klab/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -2160,6 +2161,10 @@
             "version": "[6.0.0, )"
           },
           "Microsoft.EntityFrameworkCore.Abstractions": {
+            "target": "Package",
+            "version": "[6.0.0, )"
+          },
+          "Microsoft.EntityFrameworkCore.Analyzers": {
             "target": "Package",
             "version": "[6.0.0, )"
           },
@@ -2218,7 +2223,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/dotnet6-6.0.108/sdk/6.0.108/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/6.0.105/RuntimeIdentifierGraph.json"
       }
     }
   }

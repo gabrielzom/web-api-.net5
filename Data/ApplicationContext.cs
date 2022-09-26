@@ -9,7 +9,7 @@ namespace MonitoriaWEBAPI.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             
-            optionsBuilder.UseMySql("Server=localhost;Database=web_api_dotnet_600;Uid=root;Pwd=Biels@@1;", new MySqlServerVersion(new Version(8,0,29)));
+            optionsBuilder.UseMySql("Server=localhost;Database=web_api_dotnet_600;Uid=root;Pwd=Root@@2022;", new MySqlServerVersion(new Version(8,0,29)));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
