@@ -127,7 +127,7 @@ namespace MonitoriaWEBAPI.Controllers
             }
             else if (nameAndSurname == null) 
             {
-                return BadRequest("Nome e sobrenome devem ser preenchidos");
+                return BadRequest("Nome e sobrenome devem ser preenchidos.");
             }
             else
             {
