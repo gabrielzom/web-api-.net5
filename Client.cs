@@ -12,8 +12,10 @@ namespace MonitoriaWEBAPI
 
         public Boolean SomeParameterIsNull()
         {
-            return this.NameAndSurname.Equals("") || this.DateOfBorn.Equals(new DateTime()) ||
-                   this.RegisterOfPhysicalPerson.Equals("") || this.Genre == null;
+            return NameAndSurname.Equals("") 
+                   || DateOfBorn.Equals(new DateTime()) 
+                   || RegisterOfPhysicalPerson.Equals("") 
+                   || Genre == null;
         }
 
     }

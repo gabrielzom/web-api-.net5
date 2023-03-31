@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/klab/dev/web-api-.net5/MonitoriaWEBAPI.csproj": {}
+    "/home/gabriel/dev/web-api-.net5/MonitoriaWEBAPI.csproj": {}
   },
   "projects": {
-    "/home/klab/dev/web-api-.net5/MonitoriaWEBAPI.csproj": {
+    "/home/gabriel/dev/web-api-.net5/MonitoriaWEBAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/klab/dev/web-api-.net5/MonitoriaWEBAPI.csproj",
+        "projectUniqueName": "/home/gabriel/dev/web-api-.net5/MonitoriaWEBAPI.csproj",
         "projectName": "MonitoriaWEBAPI",
-        "projectPath": "/home/klab/dev/web-api-.net5/MonitoriaWEBAPI.csproj",
-        "packagesPath": "/home/klab/.nuget/packages/",
-        "outputPath": "/home/klab/dev/web-api-.net5/obj/",
+        "projectPath": "/home/gabriel/dev/web-api-.net5/MonitoriaWEBAPI.csproj",
+        "packagesPath": "/home/gabriel/.nuget/packages/",
+        "outputPath": "/home/gabriel/dev/web-api-.net5/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/klab/.nuget/NuGet/NuGet.Config"
+          "/home/gabriel/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -97,7 +97,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -109,7 +110,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/6.0.105/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/var/run/host/usr/share/dotnet/sdk/6.0.407/RuntimeIdentifierGraph.json"
         }
       }
     }
